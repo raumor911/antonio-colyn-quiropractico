@@ -47,7 +47,15 @@ def main():
     assert len([1 for tag,a in tags if tag == "meta" and a.get("name") == "description" and "Iztapalapa" in a.get("content", "")]) == 1
     assert not any(tag == "meta" and a.get("name") == "robots" and "noindex" in a.get("content","") for tag,a in tags)
     assert any(tag == "a" and a.get("id") == "whatsapp-link" and "wa.me/"+PHONE in a.get("href","") for tag,a in tags), "Wrong WhatsApp"
-    assert any(tag == "iframe" and "Progreso%2013" in a.get("src","") and "output=embed" in a.get("src","") for tag,a in tags), "Wrong Google Maps"
+    assert any(tag == "iframe" and "Progreso%2013" in a.get("data-src","") and "output=embed" in a.get("data-src","") and "src" not in a for tag,a in tags), "Wrong or eagerly loaded Google Maps"
+    # Resource budget: mobile visits must not require external font stylesheets.
+    font_links = [a for tag,a in tags if tag == "link" and "fonts.googleapis.com" in a.get("href","")]
+    assert len(font_links) == 1 and font_links[0].get("media") == "(min-width: 761px)", "Fonts must be desktop-only"
+    assert not any(tag == "link" and a.get("rel") == "preconnect" for tag,a in tags), "Early third-party connection"
+    assert any(tag == "div" and a.get("id") == "map-preview" for tag,a in tags), "Missing map fallback"
+    script = (ROOT / "site.js").read_text(encoding="utf-8")
+    assert "IntersectionObserver" in script and 'mapFrame.src=src' in script, "Missing near-viewport map hydration"
+    assert 'wa.me/'+PHONE in html, "WhatsApp must remain immediately available"
     graph = json.loads(one(page.jsonld, "Exactly one JSON-LD payload"))
     assert graph.get("@context") == "https://schema.org"
     nodes = graph["@graph"]
