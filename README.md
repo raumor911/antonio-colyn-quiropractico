@@ -18,6 +18,17 @@ Sitio estático ligero para Vercel. Contiene exactamente cinco secciones (#inici
 
 El motor SEO + GEO generativo + LLMO incluye URL canónica única, JSON-LD de 6 nodos relacionados, robots.txt, sitemap.xml, llms.txt y respuestas visibles sobre ubicación/citas/áreas profesionales. La capa de búsqueda local enfatiza Santa María Tomatlán e Iztapalapa sin páginas duplicadas por colonia. Consultar `SEO-GEO-LLMO.md` para criterios, medidas de operación, alta de la web en el Perfil de Empresa de Google y pasos de Search Console/Bing. La auditoría de GitHub Actions verifica coherencia del NAP y de los archivos de descubrimiento.
 
+## Rendimiento móvil (octubre 2026)
+
+- HTML + CSS + JavaScript nativo: no framework ni dependencias de ejecución.
+- En pantallas de hasta 760px se emplean fuentes del sistema. El CSS de Google Fonts se solicita únicamente en escritorio para conservar allí el estilo editorial; también se retiraron las conexiones anticipadas a Google Fonts.
+- El mapa mantiene el domicilio y enlace a indicaciones disponibles desde el primer render. El iframe de Google Maps no tiene `src` inicial y se solicita al llegar cerca del mapa mediante IntersectionObserver, o al tocar «Mostrar mapa interactivo». Si JavaScript está deshabilitado o falla el mapa, el enlace externo de indicaciones permanece disponible.
+- El mismo SVG local se reutiliza en encabezado, hero y footer, aprovechando caché sin duplicar archivos de imagen.
+- El CTA directo de WhatsApp sigue operando con HTML, sin esperar a JavaScript.
+- Se actualizaron las pruebas de regresión para impedir descargas anticipadas del mapa, fuentes externas en móvil o pérdida de datos SEO.
+
+**Verificación de campo pendiente:** medir Lighthouse/PageSpeed Insights en modo móvil y Core Web Vitals reales (LCP, INP, CLS) cuando haya acceso de red/herramienta a la URL de producción. No se deben inventar puntuaciones o porcentajes de mejora sin una comparación reproducible. Probar también menú móvil, mapa y WhatsApp sobre un teléfono.
+
 ## Despliegue
 
 Importar este repositorio en Vercel y usar preset **Other**, Framework: No framework, Build command vacío, Output directory raíz. Todo es estático, no hace falta npm ni variables de entorno.
