@@ -1,7 +1,4 @@
-/* Public contact is intentionally disabled until the number has been confirmed. Fill with digits only, including country code, e.g. 52XXXXXXXXXX. */
-const SITE_CONFIG = {whatsappNumber:"",message:"Hola, Antonio. Me gustaría solicitar información sobre una valoración."};
+/* Menú adaptable: el enlace de WhatsApp funciona incluso sin JavaScript. */
 const menu=document.querySelector(".menu"),nav=document.querySelector("#main-nav");
 menu?.addEventListener("click",()=>{const open=menu.getAttribute("aria-expanded")!=="true";menu.setAttribute("aria-expanded",String(open));menu.setAttribute("aria-label",open?"Cerrar menú":"Abrir menú");nav?.classList.toggle("open",open)});
 nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("open");menu?.setAttribute("aria-expanded","false");menu?.setAttribute("aria-label","Abrir menú")}));
-const phone=SITE_CONFIG.whatsappNumber.replace(/[^0-9]/g,""),wa=document.getElementById("whatsapp-link"),status=document.getElementById("contact-status");
-if(/^\d{11,15}$/.test(phone)&&wa){wa.href="https://wa.me/"+phone+"?text="+encodeURIComponent(SITE_CONFIG.message);wa.classList.remove("disabled");wa.removeAttribute("aria-disabled");wa.removeAttribute("tabindex");wa.innerHTML='<span aria-hidden="true">✳</span> Escribir por WhatsApp';if(status)status.textContent="Puedes iniciar una conversación para preguntar por disponibilidad y servicios.";}else if(wa){wa.removeAttribute("href");}
