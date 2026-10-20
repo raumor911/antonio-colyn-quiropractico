@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://antonio-colyn-quiropractico.vercel.app/sitemap.xml
