@@ -4,7 +4,7 @@
 
 ## Diseño: mínima complejidad y alta coherencia
 
-Solo hay una página comercial indexable. Su estructura conserva cinco secciones. **GEO** aquí significa posicionamiento geográfico/local (no una técnica especial de ranking). **LLMO** significa que los hechos públicos son legibles, verificables y consistentes para sistemas de recuperación e IA. No se simulan rich results ni se promete aparición en resúmenes de IA.
+Solo hay una página comercial indexable. Su estructura conserva cinco secciones. **GEO** aquí significa *Generative Engine Optimization*: favorecer la elegibilidad como fuente en respuestas generativas mediante contenido claro, fiable y rastreable. **SEO local** cubre la intención geográfica Santa María Tomatlán / Iztapalapa; son dos dimensiones distintas. **LLMO** facilita la interpretación de entidades, datos y respuestas por sistemas de lenguaje, sin prometer que consumirán un formato determinado. No se simulan rich results ni se promete aparición en resúmenes de IA.
 
 ### Contrato de identidad (único negocio, un domicilio)
 
@@ -26,6 +26,10 @@ Solo hay una página comercial indexable. Su estructura conserva cinco secciones
 | QA SEO | tests/seo_audit.py | Comprobar cinco secciones y consistencia de URL, contacto y dirección |
 
 El directorio `/assets` incluye el logo aprobado. La dirección debe validarse en el pin de Google Maps antes de afirmar exactitud cartográfica. Evitar latitud/longitud estimadas.
+
+### GEO / LLMO en buscadores con IA
+
+Google no exige ningún archivo especial para AI Overviews o AI Mode; prioriza la indexación, contenido útil, datos estructurados fieles al contenido visible y fichas comerciales consistentes. `llms.txt` es voluntario y no influye por sí mismo en Google Search. Bing incluye consultas/citas en sus herramientas de desempeño de IA; revisar ese panel si está habilitado. No confundir ausencia de citas con fallo de indexación ni afirmar posición sin medición.
 
 ### Google Search Console
 
@@ -58,6 +62,8 @@ Registrar: URL indexada sí/no; impresiones, clics, CTR y consultas con intenci�
 - https://developers.google.com/search/docs/appearance/ai-features
 - https://developers.google.com/search/docs/fundamentals/creating-helpful-content
 - https://www.bing.com/webmasters/help/bing-webmaster-guidelines-30fba23a
+- https://developers.google.com/search/docs/fundamentals/ai-optimization-guide
+- https://blogs.bing.com/webmaster/2026/2/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview/
 
 ### No introducir
 
