@@ -1,0 +1,17 @@
+name: SEO GEO LLMO checks
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Validate semantic identity and discovery files
+        run: python3 tests/seo_audit.py
